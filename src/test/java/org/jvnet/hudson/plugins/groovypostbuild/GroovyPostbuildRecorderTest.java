@@ -543,4 +543,55 @@ public class GroovyPostbuildRecorderTest {
             b.getActions(BadgeAction.class)
         );
     }
+
+    @Test
+    public void testRemoveSummary() throws Exception {
+        FreeStyleProject p = j.createFreeStyleProject();
+
+        p.getPublishersList().add(new GroovyPostbuildRecorder(
+            new SecureGroovyScript(
+                "manager.createSummary('attribute.png').appendText('Test1', false, false, false, 'Black');\n"
+                    + "manager.createSummary('attribute.png').appendText('Test2', false, false, false, 'Black');\n"
+                    + "manager.removeSummary(0);",
+                true,
+                Collections.<ClasspathEntry>emptyList()
+            ),
+            2,   // behavior
+            false       // runForMatrixParent
+        ));
+        FreeStyleBuild b = j.assertBuildStatusSuccess(p.scheduleBuild2(0));
+        assertEquals(
+            Arrays.asList("Test2"),
+            Lists.transform(
+                b.getActions(BadgeSummaryAction.class),
+                new Function<BadgeSummaryAction, String>() {
+                    @Override
+                    public String apply(BadgeSummaryAction action) {
+                        return action.getText();
+                    }
+                }
+            )
+        );
+    }
+
+    @Test
+    public void testRemoveSummaries() throws Exception {
+        FreeStyleProject p = j.createFreeStyleProject();
+
+        p.getPublishersList().add(new GroovyPostbuildRecorder(
+            new SecureGroovyScript(
+                "manager.createSummary('attribute.png').appendText('Test1', false, false, false, 'Black');\n"
+                    + "manager.removeSummaries();",
+                true,
+                Collections.<ClasspathEntry>emptyList()
+            ),
+            2,   // behavior
+            false       // runForMatrixParent
+        ));
+        FreeStyleBuild b = j.assertBuildStatusSuccess(p.scheduleBuild2(0));
+        assertEquals(
+            Collections.emptyList(),
+            b.getActions(BadgeSummaryAction.class)
+        );
+    }
 }
