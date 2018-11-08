@@ -62,18 +62,18 @@ public class GroovyPostbuildRecorderTest {
     private static final String TEXT_ON_FAILED = "Groovy";
 
     private static final String SCRIPT_FOR_MATRIX = StringUtils.join(new String[]{
-            "import hudson.matrix.MatrixBuild;",
-            "import hudson.matrix.MatrixRun;",
-            "if (manager.buildIsA(MatrixBuild.class)) {",
-            "  // codes for matrix parents.",
-            "  manager.addShortText(\"parent\");",
-            "} else if(manager.buildIsA(MatrixRun)) {",
-            "  // codes for matrix children.",
-            "  manager.addShortText(manager.getEnvVariable(\"axis1\"));",
-            "} else {",
-            "  // unexpected case.",
-            "  manager.buildFailure();",
-            "}"
+        "import hudson.matrix.MatrixBuild;",
+        "import hudson.matrix.MatrixRun;",
+        "if (manager.buildIsA(MatrixBuild.class)) {",
+        "  // codes for matrix parents.",
+        "  manager.addShortText(\"parent\");",
+        "} else if(manager.buildIsA(MatrixRun)) {",
+        "  // codes for matrix children.",
+        "  manager.addShortText(manager.getEnvVariable(\"axis1\"));",
+        "} else {",
+        "  // unexpected case.",
+        "  manager.buildFailure();",
+        "}"
     }, '\n');
 
     @Test
@@ -120,13 +120,13 @@ public class GroovyPostbuildRecorderTest {
             FreeStyleProject p = j.createFreeStyleProject();
 
             p.getPublishersList().add(new GroovyPostbuildRecorder(
-                    new SecureGroovyScript(
-                            "manager.addShortText('testing');",
-                            true,
-                            Collections.<ClasspathEntry>emptyList()
-                    ),
-                    behavior,   // behavior
-                    false       // runForMatrixParent
+                new SecureGroovyScript(
+                    "manager.addShortText('testing');",
+                    true,
+                    Collections.<ClasspathEntry>emptyList()
+                ),
+                behavior,   // behavior
+                false       // runForMatrixParent
             ));
 
             FreeStyleBuild b = p.scheduleBuild2(0).get();
@@ -151,13 +151,13 @@ public class GroovyPostbuildRecorderTest {
             p.getBuildersList().add(new UnstableBuilder());
 
             p.getPublishersList().add(new GroovyPostbuildRecorder(
-                    new SecureGroovyScript(
-                            "manager.addShortText('testing');",
-                            true,
-                            Collections.<ClasspathEntry>emptyList()
-                    ),
-                    behavior,   // behavior
-                    false       // runForMatrixParent
+                new SecureGroovyScript(
+                    "manager.addShortText('testing');",
+                    true,
+                    Collections.<ClasspathEntry>emptyList()
+                ),
+                behavior,   // behavior
+                false       // runForMatrixParent
             ));
 
             FreeStyleBuild b = p.scheduleBuild2(0).get();
@@ -182,13 +182,13 @@ public class GroovyPostbuildRecorderTest {
             p.getBuildersList().add(new FailureBuilder());
 
             p.getPublishersList().add(new GroovyPostbuildRecorder(
-                    new SecureGroovyScript(
-                            "manager.addShortText('testing');",
-                            true,
-                            Collections.<ClasspathEntry>emptyList()
-                    ),
-                    behavior,   // behavior
-                    false       // runForMatrixParent
+                new SecureGroovyScript(
+                    "manager.addShortText('testing');",
+                    true,
+                    Collections.<ClasspathEntry>emptyList()
+                ),
+                behavior,   // behavior
+                false       // runForMatrixParent
             ));
 
             FreeStyleBuild b = p.scheduleBuild2(0).get();
@@ -209,13 +209,13 @@ public class GroovyPostbuildRecorderTest {
         FreeStyleProject p = j.createFreeStyleProject();
 
         p.getPublishersList().add(new GroovyPostbuildRecorder(
-                new SecureGroovyScript(
-                        "blahblahblah",
-                        true,
-                        Collections.<ClasspathEntry>emptyList()
-                ),
-                0,      // behavior
-                false   // runForMatrixParent
+            new SecureGroovyScript(
+                "blahblahblah",
+                true,
+                Collections.<ClasspathEntry>emptyList()
+            ),
+            0,      // behavior
+            false   // runForMatrixParent
         ));
 
         FreeStyleBuild b = p.scheduleBuild2(0).get();
@@ -238,13 +238,13 @@ public class GroovyPostbuildRecorderTest {
         p.getBuildersList().add(new UnstableBuilder());
 
         p.getPublishersList().add(new GroovyPostbuildRecorder(
-                new SecureGroovyScript(
-                        "blahblahblah",
-                        true,
-                        Collections.<ClasspathEntry>emptyList()
-                ),
-                0,      // behavior
-                false   // runForMatrixParent
+            new SecureGroovyScript(
+                "blahblahblah",
+                true,
+                Collections.<ClasspathEntry>emptyList()
+            ),
+            0,      // behavior
+            false   // runForMatrixParent
         ));
 
         FreeStyleBuild b = p.scheduleBuild2(0).get();
@@ -266,13 +266,13 @@ public class GroovyPostbuildRecorderTest {
         p.getBuildersList().add(new FailureBuilder());
 
         p.getPublishersList().add(new GroovyPostbuildRecorder(
-                new SecureGroovyScript(
-                        "blahblahblah",
-                        true,
-                        Collections.<ClasspathEntry>emptyList()
-                ),
-                0,      // behavior
-                false   // runForMatrixParent
+            new SecureGroovyScript(
+                "blahblahblah",
+                true,
+                Collections.<ClasspathEntry>emptyList()
+            ),
+            0,      // behavior
+            false   // runForMatrixParent
         ));
 
         FreeStyleBuild b = p.scheduleBuild2(0).get();
@@ -292,13 +292,13 @@ public class GroovyPostbuildRecorderTest {
         FreeStyleProject p = j.createFreeStyleProject();
 
         p.getPublishersList().add(new GroovyPostbuildRecorder(
-                new SecureGroovyScript(
-                        "blahblahblah",
-                        true,
-                        Collections.<ClasspathEntry>emptyList()
-                ),
-                1,      // behavior
-                false   // runForMatrixParent
+            new SecureGroovyScript(
+                "blahblahblah",
+                true,
+                Collections.<ClasspathEntry>emptyList()
+            ),
+            1,      // behavior
+            false   // runForMatrixParent
         ));
 
         FreeStyleBuild b = p.scheduleBuild2(0).get();
@@ -321,13 +321,13 @@ public class GroovyPostbuildRecorderTest {
         p.getBuildersList().add(new UnstableBuilder());
 
         p.getPublishersList().add(new GroovyPostbuildRecorder(
-                new SecureGroovyScript(
-                        "blahblahblah",
-                        true,
-                        Collections.<ClasspathEntry>emptyList()
-                ),
-                1,      // behavior
-                false   // runForMatrixParent
+            new SecureGroovyScript(
+                "blahblahblah",
+                true,
+                Collections.<ClasspathEntry>emptyList()
+            ),
+            1,      // behavior
+            false   // runForMatrixParent
         ));
 
         FreeStyleBuild b = p.scheduleBuild2(0).get();
@@ -349,13 +349,13 @@ public class GroovyPostbuildRecorderTest {
         p.getBuildersList().add(new FailureBuilder());
 
         p.getPublishersList().add(new GroovyPostbuildRecorder(
-                new SecureGroovyScript(
-                        "blahblahblah",
-                        true,
-                        Collections.<ClasspathEntry>emptyList()
-                ),
-                1,      // behavior
-                false   // runForMatrixParent
+            new SecureGroovyScript(
+                "blahblahblah",
+                true,
+                Collections.<ClasspathEntry>emptyList()
+            ),
+            1,      // behavior
+            false   // runForMatrixParent
         ));
 
         FreeStyleBuild b = p.scheduleBuild2(0).get();
@@ -375,13 +375,13 @@ public class GroovyPostbuildRecorderTest {
         FreeStyleProject p = j.createFreeStyleProject();
 
         p.getPublishersList().add(new GroovyPostbuildRecorder(
-                new SecureGroovyScript(
-                        "blahblahblah",
-                        true,
-                        Collections.<ClasspathEntry>emptyList()
-                ),
-                2,      // behavior
-                false   // runForMatrixParent
+            new SecureGroovyScript(
+                "blahblahblah",
+                true,
+                Collections.<ClasspathEntry>emptyList()
+            ),
+            2,      // behavior
+            false   // runForMatrixParent
         ));
 
         FreeStyleBuild b = p.scheduleBuild2(0).get();
@@ -404,13 +404,13 @@ public class GroovyPostbuildRecorderTest {
         p.getBuildersList().add(new UnstableBuilder());
 
         p.getPublishersList().add(new GroovyPostbuildRecorder(
-                new SecureGroovyScript(
-                        "blahblahblah",
-                        true,
-                        Collections.<ClasspathEntry>emptyList()
-                ),
-                2,      // behavior
-                false   // runForMatrixParent
+            new SecureGroovyScript(
+                "blahblahblah",
+                true,
+                Collections.<ClasspathEntry>emptyList()
+            ),
+            2,      // behavior
+            false   // runForMatrixParent
         ));
 
         FreeStyleBuild b = p.scheduleBuild2(0).get();
@@ -432,13 +432,13 @@ public class GroovyPostbuildRecorderTest {
         p.getBuildersList().add(new FailureBuilder());
 
         p.getPublishersList().add(new GroovyPostbuildRecorder(
-                new SecureGroovyScript(
-                        "blahblahblah",
-                        true,
-                        Collections.<ClasspathEntry>emptyList()
-                ),
-                2,      // behavior
-                false   // runForMatrixParent
+            new SecureGroovyScript(
+                "blahblahblah",
+                true,
+                Collections.<ClasspathEntry>emptyList()
+            ),
+            2,      // behavior
+            false   // runForMatrixParent
         ));
 
         FreeStyleBuild b = p.scheduleBuild2(0).get();
@@ -496,29 +496,29 @@ public class GroovyPostbuildRecorderTest {
         FreeStyleProject p = j.createFreeStyleProject();
 
         p.getPublishersList().add(new GroovyPostbuildRecorder(
-                new SecureGroovyScript(
-                        "manager.addShortText('test1');\n"
-                                + "manager.addShortText('test2');\n"
-                                + "manager.removeBadge(0);",
-                        true,       // sandbox
-                        Collections.<ClasspathEntry>emptyList()
-                ),
-                2,   // behavior
-                false       // runForMatrixParent
+            new SecureGroovyScript(
+                "manager.addShortText('test1');\n"
+                        + "manager.addShortText('test2');\n"
+                        + "manager.removeBadge(0);",
+                true,       // sandbox
+                Collections.<ClasspathEntry>emptyList()
+            ),
+            2,   // behavior
+            false       // runForMatrixParent
         ));
 
         FreeStyleBuild b = j.assertBuildStatusSuccess(p.scheduleBuild2(0));
         assertEquals(
-                Arrays.asList("test2"),
-                Lists.transform(
-                        b.getActions(BadgeAction.class),
-                        new Function<BadgeAction, String>() {
-                            @Override
-                            public String apply(BadgeAction badge) {
-                                return badge.getText();
-                            }
-                        }
-                )
+            Arrays.asList("test2"),
+            Lists.transform(
+                b.getActions(BadgeAction.class),
+                new Function<BadgeAction, String>() {
+                    @Override
+                    public String apply(BadgeAction badge) {
+                        return badge.getText();
+                    }
+                }
+            )
         );
     }
 
@@ -527,15 +527,15 @@ public class GroovyPostbuildRecorderTest {
         FreeStyleProject p = j.createFreeStyleProject();
 
         p.getPublishersList().add(new GroovyPostbuildRecorder(
-                new SecureGroovyScript(
-                        "manager.addShortText('test1');\n"
-                                + "manager.addShortText('test2');\n"
-                                + "manager.removeBadges();",
-                        true,       // sandbox
-                        Collections.<ClasspathEntry>emptyList()
-                ),
-                2,   // behavior
-                false       // runForMatrixParent
+            new SecureGroovyScript(
+                "manager.addShortText('test1');\n"
+                        + "manager.addShortText('test2');\n"
+                        + "manager.removeBadges();",
+                true,       // sandbox
+                Collections.<ClasspathEntry>emptyList()
+            ),
+            2,   // behavior
+            false       // runForMatrixParent
         ));
 
         FreeStyleBuild b = j.assertBuildStatusSuccess(p.scheduleBuild2(0));
@@ -554,28 +554,28 @@ public class GroovyPostbuildRecorderTest {
         FreeStyleProject p = j.createFreeStyleProject();
 
         p.getPublishersList().add(new GroovyPostbuildRecorder(
-                new SecureGroovyScript(
-                        "manager.createSummary('attribute.png').appendText('Test1', false, false, false, 'Black');\n"
-                                + "manager.createSummary('attribute.png').appendText('Test2', false, false, false, 'Black');\n"
-                                + "manager.removeSummary(0);",
-                        true,
-                        Collections.<ClasspathEntry>emptyList()
-                ),
-                2,   // behavior
-                false       // runForMatrixParent
+            new SecureGroovyScript(
+                "manager.createSummary('attribute.png').appendText('Test1', false, false, false, 'Black');\n"
+                        + "manager.createSummary('attribute.png').appendText('Test2', false, false, false, 'Black');\n"
+                        + "manager.removeSummary(0);",
+                true,
+                Collections.<ClasspathEntry>emptyList()
+        ),
+        2,   // behavior
+        false       // runForMatrixParent
         ));
         FreeStyleBuild b = j.assertBuildStatusSuccess(p.scheduleBuild2(0));
         assertEquals(
-                Arrays.asList("<font color=\"Black\">Test2</font>"),
-                Lists.transform(
-                        b.getActions(BadgeSummaryAction.class),
-                        new Function<BadgeSummaryAction, String>() {
-                            @Override
-                            public String apply(BadgeSummaryAction action) {
-                                return action.getText();
-                            }
-                        }
-                )
+            Arrays.asList("<font color=\"Black\">Test2</font>"),
+            Lists.transform(
+                b.getActions(BadgeSummaryAction.class),
+                new Function<BadgeSummaryAction, String>() {
+                    @Override
+                    public String apply(BadgeSummaryAction action) {
+                        return action.getText();
+                    }
+                }
+            )
         );
     }
 
@@ -587,14 +587,14 @@ public class GroovyPostbuildRecorderTest {
         FreeStyleProject p = j.createFreeStyleProject();
 
         p.getPublishersList().add(new GroovyPostbuildRecorder(
-                new SecureGroovyScript(
-                        "manager.createSummary('attribute.png').appendText('Test1', false, false, false, 'Black');\n"
-                                + "manager.removeSummaries();",
-                        true,
-                        Collections.<ClasspathEntry>emptyList()
-                ),
-                2,   // behavior
-                false       // runForMatrixParent
+            new SecureGroovyScript(
+                "manager.createSummary('attribute.png').appendText('Test1', false, false, false, 'Black');\n"
+                        + "manager.removeSummaries();",
+                true,
+                Collections.<ClasspathEntry>emptyList()
+        ),
+        2,   // behavior
+        false       // runForMatrixParent
         ));
         FreeStyleBuild b = j.assertBuildStatusSuccess(p.scheduleBuild2(0));
         assertEquals(
